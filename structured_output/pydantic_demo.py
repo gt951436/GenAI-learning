@@ -3,7 +3,7 @@ from typing import Optional
 
 class Student(BaseModel):
     name:str = "Garv"    #default value in pydantic 
-    age:Optional[int] = None
+    age:Optional[int] = None  # optional values must be given default value
     email:EmailStr
     cgpa: float = Field(gt=0,lt=10,default = 5,description="Decimal value representing cgpa")
     
