@@ -87,3 +87,11 @@ so they are confirmed to be present in the result data (or review data)
 """
 print("Pros: ",review_data.get('pros'))
 print("Cons: ",review_data.get('cons'))
+
+"""
+If you tried review_data["pros"] or review_data['cons'] when 
+there is no "pros" or "cons" key, you'd get a KeyError.
+
+review_data.get("pros") and/or review_data.get("cons") returns the 
+value if present, or None if the key is missing.
+"""
