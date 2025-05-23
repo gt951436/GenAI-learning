@@ -1,5 +1,6 @@
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,6 +24,8 @@ template2 = PromptTemplate(
     input_variables=['text']
 )
 
+"""using result.content or without using any parser"""
+
 prompt1 = template1.invoke({'topic':'black hole'})
 result1 = model.invoke(prompt1)
 
@@ -30,3 +33,14 @@ prompt2 = template2.invoke({'text':result1.content})
 result2 = model.invoke(prompt2)
 
 print(result2.content)
+
+"""Using parser and chains"""
+
+#parser creation
+parser = StrOutputParser()
+
+# chain/pipeline for flow execution
+chain = template1|model|parser|template2|model|parser
+
+result = chain.invoke({'topic':'Black hole'})
+print(result)
