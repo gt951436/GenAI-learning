@@ -23,6 +23,8 @@ template = PromptTemplate(
     # partial variable --> runtime se pehle hi fill hojaata hai
     partial_variables={'format_instruction':parser.get_format_instructions()} # Return a JSON object
 )
+
+""" 
 prompt = template.format()
 #print(prompt)
 
@@ -30,6 +32,17 @@ result = model.invoke(prompt)
 #print(result)
 
 final_result = parser.parse(result.content)
+
+
 print(final_result)
 print(type(final_result))  #dict type
 print(final_result['name'])
+"""
+
+# using chains
+chain = template|model|parser
+result = chain.invoke({}) #invoke() fn needs 1 dict input --> {}
+
+print(result)
+print(type(result))
+print(result['age'])
