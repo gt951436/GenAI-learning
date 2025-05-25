@@ -23,3 +23,4 @@ chain = prompt|model|parser
 
 result = chain.invoke({'topic':'Cinematography of Satyajit Ray'})
 print(result)
+chain.get_graph().print_ascii()
