@@ -1,5 +1,4 @@
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
-from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain.schema.runnable import RunnableParallel
@@ -9,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 llm1 = HuggingFaceEndpoint(
-    repo_id = "mistralai/Mistral-7B-Instruct-v0.3",
+    repo_id = "meta-llama/Llama-3.2-3B-Instruct",
     task ="text-generation"
 )
 model1 = ChatHuggingFace(llm=llm1)
