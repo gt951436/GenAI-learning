@@ -39,6 +39,7 @@ prompt1 = PromptTemplate(
 )
 
 classifier_chain = prompt1|model|parser2
+classifier_chain.get_graph().print_ascii()
 
 """result = classifier_chain.invoke({'feedback':'this software is Bogus'})
 print(result)"""
@@ -65,9 +66,10 @@ branch_chain = RunnableBranch(
     (lambda x:x.sentiment=='Negative',prompt3|model|parser1),
     RunnableLambda(lambda x: "couldn't find any sentiment!")  # default case
 )
+branch_chain.get_graph().print_ascii()
 
 final_chain = classifier_chain|branch_chain
 
 answer = final_chain.invoke({'feedback':'The recent update in software is amazing but the hardware is older and not good enough.'})
 print(answer)
-
+final_chain.get_graph().print_ascii()
