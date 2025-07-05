@@ -5,8 +5,10 @@ loader = DirectoryLoader(
     glob  = "*.pdf",
     loader_cls = PyPDFLoader
 )
+# loading 
+#docs = loader.load()
 
-docs = loader.load()
-print(len(docs))
-print(docs[12])
-print(docs[12].metadata)
+#lazy loading
+docs = loader.lazy_load()
+for doc in docs:
+    print(doc.metadata)
